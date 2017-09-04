@@ -18,7 +18,8 @@ fi
 
 for package in $packages; do
 	package=${package##*/}
-	if [[ $(find $current_dir -maxdepth 1 -mindepth 1 -name "$package" )
+	if [[ $(find $current_dir -maxdepth 1 -mindepth 1 -name "$package" ) == "" ]]; then
+		(>&2 echo -e "Error: Couldn't find $package in $current_dir directory")
 	xml=$(find $current_dir/$package -maxdepth 1 -mindepth 1 -name "package.xml")
 	if [[ "$xml" == "" ]]; then
 		(>&2 echo -e "Error: no package.xml file in a package directory")
