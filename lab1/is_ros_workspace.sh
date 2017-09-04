@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo "source /opt/ros/kinetic/setup.bash" >> .bashrc
 length() {
 	echo "$#"
 }
@@ -18,7 +18,7 @@ if [ "$(length $dirs)" -gt "1" ]; then
 	(>&2 echo -e "Error: many ($(length $dirs)) workspace directories were found: $dirs")
 	exit 1
 fi
-workspace=$current_dir/$dirs
+workspace=$dirs
 
 #find src folder in the worspace folder
 dirs=$(find $workspace -maxdepth 1 -mindepth 1 -type d -name "[^.]*" | tr '\n' ' ')
