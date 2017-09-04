@@ -45,6 +45,7 @@ for package in $packages; do
 		(>&2 echo -e "       CMakeLists.txt contains: $project_cmake")
 		exit 1
 	fi
-	echo -e "package $package is correct!"
+	
 done
+echo -e "packages are correct!"
 exit 0
