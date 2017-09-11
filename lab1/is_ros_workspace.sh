@@ -45,6 +45,7 @@ if [[ "$link" != "/opt/ros/kinetic/share/catkin/cmake/toplevel.cmake" ]]; then
 	(>&2 echo -e "       request link: /opt/ros/kinetic/share/catkin/cmake/toplevel.cmake")
 	exit 1
 fi
-echo -e "$workspace $(find $src -maxdepth 1 -mindepth 1 -type d -name '[^.]*' | tr '\n' ' ')" > packages.txt
+echo -e "$workspace" > workspace.txt
+echo -e "$(find $src -maxdepth 1 -mindepth 1 -type d -name '[^.]*' | tr '\n' ' ')" > packages.txt
 echo -e "workspace was created succesfully"
 exit 0
