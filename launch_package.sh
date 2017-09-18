@@ -1,9 +1,10 @@
 #!/bin/bash
 
-# workspace=... - workspace dir
-# launch=...    - path to launch file
-# topics=...    - file with topics (for comparison)
-# nodes=...     - file with nodes (for comparison)
+# git_dir:=...   - dir where git was cloned
+# workspace:=... - workspace dir
+# launch:=...    - path to launch file
+# topics:=...    - file with topics (for comparison)
+# nodes:=...     - file with nodes (for comparison)
 
 get() {
 	local key=$1
@@ -16,7 +17,7 @@ get() {
 	done
 }
 
-current_dir=$(pwd)
+current_dir=$(get "git_dir" $@)
 workspace=$(get "workspace" $@)
 launch=$(get "launch" $@)
 topics_true=$(get "topics" $@)
@@ -50,3 +51,5 @@ if [[ $($current_dir/file_equal.py $nodes $nodes_true "error") == "error" ]]; th
 	echo -e "REQUIRED:"
 	echo -e "$(cat $nodes_true)"
 fi
+
+echo -e "launch is correct"
