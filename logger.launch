@@ -1,0 +1,3 @@
+<launch>
+	<node pkg="logger" type="logger" name="log" args="$(arg topics) $(arg nodes)" required="true"/>
+</launch>
