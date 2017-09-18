@@ -18,6 +18,7 @@ get() {
 }
 
 current_dir=$(get "git_dir" $@)
+current_dir=${curent_dir% }
 workspace=$(get "workspace" $@)
 launch=$(get "launch" $@)
 topics_true=$(get "topics" $@)
