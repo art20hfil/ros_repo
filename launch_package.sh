@@ -5,36 +5,48 @@
 # launch:=...    - path to launch file
 # topics:=...    - file with topics (for comparison)
 # nodes:=...     - file with nodes (for comparison)
+# input:=...     - file with input data for nodes
+# output:=...    - file with output data from nodes
 
 get() {
 	local key=$1
+	local out=""
 	for arg in $@; do
 		if [[ ${arg%%:=*} == $key ]] && 
 		   [[ ${arg#*:=}  != ""   ]] && 
 		   [[ ${arg#*:=}  != $arg ]]; then
-			echo -n "${arg#*:=} "
+			out=$out"${arg#*:=} "
 		fi
 	done
+	echo -n "${out% }"
 }
 
 current_dir=$(get "git_dir" $@)
-current_dir=${current_dir% }
 workspace=$(get "workspace" $@)
 launch=$(get "launch" $@)
 topics_true=$(get "topics" $@)
 nodes_true=$(get "nodes" $@)
+input_file=$(get "input" $@)
+if [[ $input_file != "" ]]; then
+	input_file="< $input_file"
+fi
+output_file=$(get "output" $@)
+if [[ $output_file != "" ]]; then
+	output_file="> $output_file"
+else
+	output_file=/dev/null
+fi
 
 cd $workspace
-workspace=${workspace% }
 source /opt/ros/kinetic/setup.bash
 if [[ $(catkin_make >> /dev/null) != "" ]]; then
 	echo -e "Error: package could not be compiled"
 fi
 
 source devel/setup.bash
-topics=$workspace/src/logger/topics.txt
-nodes=$workspace/src/logger/nodes.txt
-roslaunch $launch topics:=$workspace/src/logger/topics.txt nodes:=$workspace/src/logger/nodes.txt >> /dev/null 2>>/dev/null
+topics=$current_dir/topics.txt
+nodes=$current_dir/nodes.txt
+roslaunch $launch topics:=$topics nodes:=$nodes $input_file 2>>/dev/null $output_file
 
 cd $current_dir
 if [[ $($current_dir/file_equal.py $topics $topics_true "error") == "error" ]]; then
