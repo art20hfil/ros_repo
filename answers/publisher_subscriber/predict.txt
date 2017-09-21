@@ -1,5 +1,5 @@
-/subscriber: 1
-/subscriber: 2
-/subscriber: 3
-/subscriber: 4
-/subscriber: 5
+/subscriber: data: 1
+/subscriber: data: 2
+/subscriber: data: 3
+/subscriber: data: 4
+/subscriber: data: 5
