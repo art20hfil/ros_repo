@@ -28,11 +28,11 @@ topics_true=$(get "topics" $@)
 nodes_true=$(get "nodes" $@)
 input_file=$(get "input" $@)
 if [[ $input_file != "" ]]; then
-	input_file="< $input_file"
+	input_file="$input_file"
 fi
 output_file=$(get "output" $@)
 if [[ $output_file != "" ]]; then
-	output_file="> $output_file"
+	output_file="$output_file"
 else
 	output_file=/dev/null
 fi
@@ -41,12 +41,22 @@ cd $workspace
 source /opt/ros/kinetic/setup.bash
 if [[ $(catkin_make >> /dev/null) != "" ]]; then
 	echo -e "Error: package could not be compiled"
+	exit 1
 fi
 
-source devel/setup.bash
+source $workspace/devel/setup.bash
 topics=$current_dir/topics.txt
 nodes=$current_dir/nodes.txt
-roslaunch $launch topics:=$topics nodes:=$nodes $input_file 2>>/dev/null $output_file
+exec 6<&0
+exec < $input_file
+exec 7<&1
+exec > $output_file
+exec 8<&2
+exec 2> /dev/null
+roslaunch $launch topics:=$topics nodes:=$nodes
+exec 0<&6 6<&-
+exec 1<&7 7<&-
+exec 8<&2 8<&-
 
 cd $current_dir
 if [[ $($current_dir/file_equal.py $topics $topics_true "error") == "error" ]]; then
@@ -55,6 +65,7 @@ if [[ $($current_dir/file_equal.py $topics $topics_true "error") == "error" ]]; 
 	echo -e "$(cat $topics)"
 	echo -e "REQUIRED:"
 	echo -e "$(cat $topics_true)"
+	exit 1
 fi
 
 if [[ $($current_dir/file_equal.py $nodes $nodes_true "error") == "error" ]]; then
@@ -63,6 +74,7 @@ if [[ $($current_dir/file_equal.py $nodes $nodes_true "error") == "error" ]]; th
 	echo -e "$(cat $nodes)"
 	echo -e "REQUIRED:"
 	echo -e "$(cat $nodes_true)"
+	exit 1
 fi
 
 echo -e "launch is correct"

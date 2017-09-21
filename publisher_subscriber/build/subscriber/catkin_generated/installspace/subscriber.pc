@@ -1,8 +1,0 @@
-prefix=/home/artem/git/ros_repo/publisher_subscriber/install
-
-Name: subscriber
-Description: Description of subscriber
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/artem/git/ros_repo/publisher_subscriber/install/lib 
-Requires: 
