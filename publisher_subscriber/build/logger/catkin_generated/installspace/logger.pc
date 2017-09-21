@@ -1,0 +1,8 @@
+prefix=/home/artem/git/ros_repo/publisher_subscriber/install
+
+Name: logger
+Description: Description of logger
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/artem/git/ros_repo/publisher_subscriber/install/lib 
+Requires: 

@@ -1,0 +1,2 @@
+logger:package:subscriber
+-DCATKIN_DEVEL_PREFIX=/home/artem/git/ros_repo/publisher_subscriber/devel -DCMAKE_INSTALL_PREFIX=/home/artem/git/ros_repo/publisher_subscriber/install -G Unix Makefiles
