@@ -39,7 +39,8 @@ fi
 
 cd $workspace
 source /opt/ros/kinetic/setup.bash
-if [[ $(catkin_make >> /dev/null) != "" ]]; then
+catkin_make >> /dev/null 2> ~/forerrors.txt
+if [[ "$(cat ~/forerrors.txt)" != "" ]]; then
 	echo -e "Error: package could not be compiled"
 	exit 1
 fi
