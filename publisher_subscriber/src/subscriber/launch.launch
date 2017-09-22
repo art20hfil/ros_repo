@@ -1,5 +1,5 @@
 <launch>
 	<node name="node" type="node" pkg="package" required="true" output="screen"/>
-	<node name="subscriber" type="subscriber" pkg="subscriber" output="screen"/>
+	<node name="subscriber" type="subscriber" pkg="subscriber" required="true" output="screen"/>
 	<node name="log" type="logger" pkg="logger" args="$(arg topics) $(arg nodes)" output="screen"/>
 </launch>
