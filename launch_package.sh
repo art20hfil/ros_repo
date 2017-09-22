@@ -42,6 +42,7 @@ source /opt/ros/kinetic/setup.bash
 catkin_make >> /dev/null 2> ~/forerrors.txt
 if [[ "$(cat ~/forerrors.txt)" != "" ]]; then
 	echo -e "Error: package could not be compiled"
+	echo -e "$(cat ~/forerrors.txt)"
 	exit 1
 fi
 
