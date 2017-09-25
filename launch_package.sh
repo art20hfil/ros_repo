@@ -30,7 +30,7 @@ input_file=$(get "input" $@)
 if [[ $input_file != "" ]]; then
 	input_file="$input_file"
 else
-	input_file=0
+	input_file="&0"
 fi
 output_file=$(get "output" $@)
 if [[ $output_file != "" ]]; then
