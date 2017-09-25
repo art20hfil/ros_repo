@@ -2,7 +2,7 @@
 
 current_dir=$1
 
-mes_file=$(find $current_dir -name *.msg 2> /dev/null | tr "\n" " ")
+mes_file=$(find $current_dir -name *.msg | tr "\n" " ")
 mes_file=${mes_file% }
 if [[ $mess_file == "" ]] || [ $mess_file == " " ]]; then
 	echo -e "Error: messge file is not found in directory"
