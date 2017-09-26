@@ -27,17 +27,7 @@ launch=$(get "launch" $@)
 topics_true=$(get "topics" $@)
 nodes_true=$(get "nodes" $@)
 input_file=$(get "input" $@)
-if [[ $input_file != "" ]]; then
-	input_file="$input_file"
-else
-	input_file="&0"
-fi
-output_file=$(get "output" $@)
-if [[ $output_file != "" ]]; then
-	output_file="$output_file"
-else
-	output_file=/dev/null
-fi
+
 
 cd $workspace
 source /opt/ros/kinetic/setup.bash
@@ -51,15 +41,30 @@ fi
 source $workspace/devel/setup.bash
 topics=$current_dir/topics.txt
 nodes=$current_dir/nodes.txt
-exec 6<&0
-exec < $input_file
-exec 7<&1
-exec > $output_file
+
+if [[ $input_file != "" ]]; then
+	exec 6<&0
+	exec < $input_file
+else
+	input_file=""
+fi
+output_file=$(get "output" $@)
+if [[ $output_file != "" ]]; then
+	exec 7<&1
+	exec > $output_file
+else
+	output_file=""
+fi
+
 exec 8<&2
 exec 2> /dev/null
 roslaunch $launch topics:=$topics nodes:=$nodes
-exec 0<&6 6<&-
-exec 1<&7 7<&-
+if [[ $input_file != "" ]]; then
+	exec 0<&6 6<&-
+fi
+if [[ $output_file != "" ]]; then
+	exec 1<&7 7<&-
+fi
 exec 8<&2 8<&-
 
 cd $current_dir
