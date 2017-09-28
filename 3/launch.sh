@@ -6,7 +6,8 @@ pkg_dir=$(cat /root/packages.txt)
 pkg=${pkg_dir##*/}
 
 cd $(cat /root/workspace.txt)
-source /opt/ros/kinetic/setup.bash
+cp /root/ros_repo/3/rviz.py $pkg_dir
+
 catkin_make -j1 >> /dev/null 2> ~/forerrors.txt
 if [[ "$(cat ~/forerrors.txt)" != "" ]]; then
 	echo -e "Error: package could not be compiled"
