@@ -8,19 +8,19 @@ from visualization_msgs.msg import Marker
 
 def prepare_answer(message):
     print '111'
-    correct_fout = open('/home/anton/answer_file.txt','a')
+    correct_fout = open('~/answer_file.txt','a')
     correct_fout.write(str(message.x) + str(message.y) + str(message.z) + '\n')
     correct_fout.close()
     print str(message.x) + str(message.y) + str(message.z)
 
 def test_answer(message):
     global set_type
-    received_fout = open('/home/anton/received_file.txt','a')
+    received_fout = open('~/received_file.txt','a')
     
     received_fout.write(str(message.pose.position.x) + str(message.pose.position.y) + str(message.pose.position.z) + '\n')
     if set_type != -1:
         if set_type != message.type:
-            received_fout.write('error01 unexpected type changing\n')
+            received_fout.write('error unexpected type changing\n')
     else:
         set_type = message.type
     
@@ -30,15 +30,15 @@ def test_answer(message):
     if not message.id in id_arr:
         id_arr.append(message.id)
     else:
-        received_fout.write('error02 received the same id\n')
+        received_fout.write('error received the same id\n')
     received_fout.close()
 
 if __name__ == '__main__':
     set_type = -1
     id_arr = []
-    fout = open('/home/anton/answer_file.txt','w')
+    fout = open('~/answer_file.txt','w')
     fout.close()
-    ffout = open('/home/anton/received_file.txt','w')
+    ffout = open('~/received_file.txt','w')
     ffout.close()
 
     rospy.init_node('pub_and_check', anonymous=True, log_level=rospy.INFO)
