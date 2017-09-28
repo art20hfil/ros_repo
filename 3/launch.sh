@@ -6,7 +6,7 @@ pkg_dir=$(cat /root/packages.txt)
 pkg=${pkg_dir##*/}
 
 cd $(cat /root/workspace.txt)
-cp /root/ros_repo/3/rviz.py $pkg_dir
+cp /root/ros_repo/3/rviz_lab.py $pkg_dir
 
 catkin_make -j1 >> /dev/null 2> ~/forerrors.txt
 if [[ "$(cat ~/forerrors.txt)" != "" ]]; then
