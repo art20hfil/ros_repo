@@ -8,14 +8,14 @@ from visualization_msgs.msg import Marker
 
 def prepare_answer(message):
     print '111'
-    correct_fout = open('~/answer_file.txt','a')
+    correct_fout = open('/root/answer_file.txt','a')
     correct_fout.write(str(message.x) + str(message.y) + str(message.z) + '\n')
     correct_fout.close()
     print str(message.x) + str(message.y) + str(message.z)
 
 def test_answer(message):
     global set_type
-    received_fout = open('~/received_file.txt','a')
+    received_fout = open('/root/received_file.txt','a')
     
     received_fout.write(str(message.pose.position.x) + str(message.pose.position.y) + str(message.pose.position.z) + '\n')
     if set_type != -1:
@@ -36,9 +36,9 @@ def test_answer(message):
 if __name__ == '__main__':
     set_type = -1
     id_arr = []
-    fout = open('~/answer_file.txt','w')
+    fout = open('/root/answer_file.txt','w')
     fout.close()
-    ffout = open('~/received_file.txt','w')
+    ffout = open('/root/received_file.txt','w')
     ffout.close()
 
     rospy.init_node('pub_and_check', anonymous=True, log_level=rospy.INFO)
