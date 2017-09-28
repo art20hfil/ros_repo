@@ -55,5 +55,4 @@ if __name__ == '__main__':
         pub_test.publish(msg)
         time.sleep(0.2)
 
-    time.sleep(1)
-    rospy.spin()
+    time.sleep(10)
