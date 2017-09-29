@@ -10,6 +10,12 @@ for cur_service_package in $service_packages; do
 		service_package_name=${service_package##*/}
 		service_type=${service_file##*/}
 		service_type=${service_type%.srv}
+		service_first_argument=$(head -n 1 $service_file)
+		service_first_argument_name=${service_first_argument#* }
+		service_second_argument=$(head -n 2 $service_file | tail -n 1)
+		service_second_argument_name=${service_second_argument#* }
+		service_output_argument=$(tail -n 1 $service_file)
+		service_output_argument_name=${service_output_argument#* }
 	fi
 done
 mkdir -p $package
@@ -61,13 +67,13 @@ using std::endl;
 
 int test(ros::ServiceClient& clnt, string s1, string s2) {
 	$service_package_name::$service_type test;
-	test.request.s1 = s1;
-	test.request.s2 = s2;
+	test.request.$service_first_argument_name = s1;
+	test.request.$service_second_argument_name = s2;
 	if (clnt.call(test)) {
-		if (test.response.out != s1+s2) {
-			cout << \"Error: request s1=\" << test.request.s1.c_str() 
-                             << \" s2=\" << test.request.s1.c_str() << endl
-			     << \"	response out=\" << test.response.out.c_str() << endl;
+		if (test.response.$service_output_argument_name != s1+s2) {
+			cout << \"Error: request s1=\" << test.request.$service_first_argument_name.c_str() 
+                             << \" s2=\" << test.request.$service_second_argument_name.c_str() << endl
+			     << \"	response out=\" << test.response.$service_output_argument_name.c_str() << endl;
 			return 1;
 		}
 	}
