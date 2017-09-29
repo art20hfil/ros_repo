@@ -1,7 +1,5 @@
 #!/bin/bash
 source /opt/ros/kinetic/setup.bash
-cd /root
-git clone git@github.com:art20hfil/ros_repo.git
 pkg_dir=$(cat /root/packages.txt)
 pkg=${pkg_dir##*/}
 
@@ -16,4 +14,4 @@ if [[ "$(cat ~/forerrors.txt)" != "" ]]; then
 fi
 
 source $(cat /root/workspace.txt)/devel/setup.bash
-roscore 2>/dev/null 1>/dev/null & rosrun $pkg $(ls $(catkin_find --without-underlays --libexec $pkg)) & rosrun $pkg rviz_lab.py &
+roscore 2>/dev/null 1>/dev/null & rosrun $pkg $(ls $(catkin_find --without-underlays --libexec $pkg)) & rosrun $pkg rviz_lab.py 
