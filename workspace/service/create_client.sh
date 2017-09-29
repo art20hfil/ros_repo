@@ -100,7 +100,7 @@ int main(int argc, char** argv) {
 	if (test(clnt, \"111\",\"222\")) {return 1;}
 	if (test(clnt, \"qqq\", \" \")) {return 1;}
 	ros::spinOnce();
-	cout << \"success tests\";
+	cout << \"success tests\" << endl;
 }" > $package/client.cpp
 
 node_server_type=$(cat $service_package/CMakeLists.txt | grep target_link_libraries | tr "\n" " ")
