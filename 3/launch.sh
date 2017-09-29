@@ -24,12 +24,6 @@ if [[ $(cat ~/received_file.txt) == "" ]]; then
 fi
 
 error_log=$(/root/ros_repo/file_equal.py /root/answer_file.txt /root/received_file.txt "not_equal")
-if [[ $error_log != "" ]]; then
-        echo -e "Error: Your Markers are incorrect"
-        echo -e "$(cat ~/received_file.txt | grep error)"
-        rm -rf $(cat /root/workspace.txt)/build/ $(cat /root/workspace.txt)/devel/ /root/ros_repo/
-        exit 1
-fi
 
 if [[ $error_log != "" ]] && [[ $(cat ~/received_file.txt | grep error) == "" ]]; then
         echo -e "Error: Your Markers are incorrect"
@@ -37,6 +31,13 @@ if [[ $error_log != "" ]] && [[ $(cat ~/received_file.txt | grep error) == "" ]]
         echo -e "$(cat ~/answer_file.txt)"
         echo -e "You provide data:"
         echo -e "$(cat ~/received_file.txt)"
+        rm -rf $(cat /root/workspace.txt)/build/ $(cat /root/workspace.txt)/devel/ /root/ros_repo/
+        exit 1
+fi
+
+if [[ $error_log != "" ]]; then
+        echo -e "Error: Your Markers are incorrect"
+        echo -e "$(cat ~/received_file.txt | grep error)"
         rm -rf $(cat /root/workspace.txt)/build/ $(cat /root/workspace.txt)/devel/ /root/ros_repo/
         exit 1
 fi
