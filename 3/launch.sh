@@ -10,6 +10,7 @@ catkin_make -j1 >> /dev/null 2> ~/forerrors.txt
 if [[ "$(cat ~/forerrors.txt)" != "" ]]; then
 	echo -e "Error: package could not be compiled"
 	echo -e "$(cat ~/forerrors.txt)"
+        rm -rf $(cat workspace.txt)/build/ $(cat workspace.txt)/devel/ /root/ros_repo/
 	exit 1
 fi
 
@@ -18,6 +19,7 @@ roscore 2>/dev/null 1>/dev/null & sleep 1 && rosrun $pkg $(ls $(catkin_find --wi
 
 if [[ $(cat ~/received_file.txt) == "" ]]; then
         echo -e "Topic /output is empty or messages cannot be recognized"
+        rm -rf $(cat workspace.txt)/build/ $(cat workspace.txt)/devel/ /root/ros_repo/
         exit 1
 fi
 
@@ -25,5 +27,6 @@ fi
 if [[ $error_log != "" ]]; then
         echo -e "Error: Your Markers are incorrect"
         echo -e "$(cat ~/received_file.txt | grep error)"
+        rm -rf $(cat workspace.txt)/build/ $(cat workspace.txt)/devel/ /root/ros_repo/
         exit 1
 fi
