@@ -14,7 +14,11 @@ if [[ "$(cat ~/forerrors.txt)" != "" ]]; then
 fi
 
 source $(cat /root/workspace.txt)/devel/setup.bash
-roscore 2>/dev/null 1>/dev/null & sleep 1 && rosrun $pkg $(ls $(catkin_find --without-underlays --libexec $pkg)) 2>/dev/null & rosrun $pkg rviz_lab.py 2>/dev/null
+roscore 2>/dev/null 1>/dev/null & sleep 1 && rosrun $pkg $(ls $(catkin_find --without-underlays --libexec $pkg)) 2>/dev/null 1>/dev/null & rosrun $pkg rviz_lab.py 2>/dev/null 1>/dev/null
+
+if [[ $(cat ~/received_file.txt) == "" ]]; then
+        echo -e "Topic /output is empty or messages cannot be recognized"
+        exit 1
 
 /root/ros_repo/file_equal.py /root/answer_file.txt /root/received_file.txt "not_equal"> error_log
 if [[ $error_log != "" ]]; then
