@@ -4,6 +4,11 @@ length() {
 	echo "$#"
 }
 
+if [[ workspace.txt ]] || [[ packages.txt ]]; then
+	echo -e "workspace was created succesfully"
+	exit 0
+fi
+
 current_dir=$1
 
 #find catkin_workspace folder in the requested directory
