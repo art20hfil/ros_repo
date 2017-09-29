@@ -7,11 +7,9 @@ from visualization_msgs.msg import Marker
 
 
 def prepare_answer(message):
-    print '111'
     correct_fout = open('/root/answer_file.txt','a')
     correct_fout.write(str(message.x) + str(message.y) + str(message.z) + '\n')
     correct_fout.close()
-    print str(message.x) + str(message.y) + str(message.z)
 
 def test_answer(message):
     global set_type

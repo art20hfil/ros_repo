@@ -14,4 +14,11 @@ if [[ "$(cat ~/forerrors.txt)" != "" ]]; then
 fi
 
 source $(cat /root/workspace.txt)/devel/setup.bash
-roscore 2>/dev/null 1>/dev/null & rosrun $pkg $(ls $(catkin_find --without-underlays --libexec $pkg)) & rosrun $pkg rviz_lab.py 
+roscore 2>/dev/null 1>/dev/null & sleep 1 && rosrun $pkg $(ls $(catkin_find --without-underlays --libexec $pkg)) & rosrun $pkg rviz_lab.py
+
+/root/ros_repo/file_equal.py /root/answer_file.txt /root/received/file.txt "not_equal"> error_log
+if [[ $error_log != "" ]]; then
+        echo -e "Error: Your Markers are incorrect"
+        echo -e "$(cat ~/received_file.txt | grep error)"
+        exit 1
+fi
