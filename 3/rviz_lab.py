@@ -18,7 +18,7 @@ def test_answer(message):
     received_fout.write(str(message.pose.position.x) + str(message.pose.position.y) + str(message.pose.position.z) + '\n')
     if set_type != -1:
         if set_type != message.type:
-            received_fout.write('error unexpected type changing\n')
+            received_fout.write('error: unexpected type changing of several markers\n')
     else:
         set_type = message.type
     
@@ -28,7 +28,7 @@ def test_answer(message):
     if not message.id in id_arr:
         id_arr.append(message.id)
     else:
-        received_fout.write('error received the same id\n')
+        received_fout.write('error: received the marker(s) with the same id\n')
     received_fout.close()
 
 if __name__ == '__main__':
