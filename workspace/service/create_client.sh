@@ -88,6 +88,7 @@ int main(int argc, char** argv) {
 
 	do {
 		getline(services, service_line);
+		cout << service_line.c_str() << endl;
 	} while ((service_line == string(\"/meow/get_loggers\") ||
 	         service_line == string(\"/meow/set_logger_level\")) && !services.eof());
 
