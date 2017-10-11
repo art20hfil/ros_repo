@@ -6,10 +6,10 @@ pkg=${pkg_dir##*/}
 cd $(cat /root/workspace.txt)
 cp /root/ros_repo/3/rviz_lab.py $pkg_dir
 
-catkin_make -j1 >> /dev/null 2> ~/forerrors.txt
-if [[ "$(cat ~/forerrors.txt)" != "" ]]; then
+catkin_make -j1 >> /dev/null 2> /root/forerrors.txt
+if [[ "$(cat /root/forerrors.txt)" != "" ]]; then
 	echo -e "Error: package could not be compiled"
-	echo -e "$(cat ~/forerrors.txt)"
+	echo -e "$(cat /root/forerrors.txt)"
         rm -rf $(cat /root/workspace.txt)/build/ $(cat /root/workspace.txt)/devel/ /root/ros_repo/ $pkg_dir/rviz_lab.py
 	exit 1
 fi
