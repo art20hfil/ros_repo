@@ -3,7 +3,7 @@ source /opt/ros/kinetic/setup.bash
 
 cd /root/
 mkdir -p workspace/src/
-cd wodkspace/src
+cd workspace/src
 catkin_init_workspace
 cp /root/ros_repo/3/3.2/example_pkg/ /root/ros_repo/workspace/src/
 cp /root/ros_repo/3/3.2/sample_pkg/ /root/ros_repo/workspace/src/
