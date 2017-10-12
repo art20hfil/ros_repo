@@ -22,7 +22,7 @@ if [[ $(users_file) == "" ]]; then
     exit 1
 fi
 
-roslaunch $(users_file) max_size:=7488 1>/dev/null 2>/dev/null &
+roslaunch $(users_file) max_size:=1 1>/dev/null 2>/dev/null &
 sleep 1
 rostopic list >> /root/topics.txt
 echo -e "/input_array\n/rosout\n/rosout_agg" >> /root/expected_topics.txt
