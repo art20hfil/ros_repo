@@ -4,7 +4,7 @@ source /opt/ros/kinetic/setup.bash
 cd /root/
 mkdir -p workspace/src/
 cd workspace/src
-catkin_init_workspace
+catkin_init_workspace >> /dev/null
 cp -a /root/ros_repo/3/3.2/example_pkg/ /root/workspace/src/
 cp -a /root/ros_repo/3/3.2/sample_pkg/ /root/workspace/src/
 cd /root/workspace

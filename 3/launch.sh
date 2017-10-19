@@ -1,6 +1,7 @@
 #!/bin/bash
 source /opt/ros/kinetic/setup.bash
 pkg_dir=$(cat /root/packages.txt)
+pkg_dir=${p% }
 pkg=${pkg_dir##*/}
 
 cd $(cat /root/workspace.txt)
