@@ -23,7 +23,7 @@ if [[ $users_file == "" ]]; then
     exit 1
 fi
 
-roslaunch $users_file max_size:=1 1>/dev/null 2>is_launched &
+roslaunch $users_file max_size:=1 1>is_launched 2>is_launched &
 if [[ $is_launched != "" ]]; then
     echo -e "Error: could not launch your file"
     rm -rf /root/ros_repo/ /root/workspace
