@@ -8,7 +8,7 @@ int main(int argc, char** argv) {
     int cost;
     ros::param::param<int>("~cost", cost, -7844);
     std::ofstream fout("/root/out.txt");
-    fout << cost==-7844?0:1;
+    fout << (cost==-7844?0:1);
     fout.close();
     ros::spinOnce();
     sleep(3);
