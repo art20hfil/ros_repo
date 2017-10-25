@@ -34,17 +34,15 @@ if [[ "$(cat /root/forerrors.txt)" != "" ]]; then
     exit 1
 fi
 
-rostopic list >> /root/topics.txt
-echo -e "/input_array\n/rosout\n/rosout_agg" >> /root/expected_topics.txt
+cat $users_file | grep remap | grep input_array >> /root/remapped.txt
 
-error_log=$(/root/ros_repo/file_equal.py /root/topics.txt /root/expected_topics.txt "not_equal")
-if [[ $error_log != "" ]]; then
+if [[ "$(cat /root/remapped.txt)" != "" ]]; then
     echo -e "Error: node2 is reading from incorrect topic"
-    rm -rf /root/ros_repo/ /root/workspace /root/expected_topics.txt /root/topics.txt
+    rm -rf /root/ros_repo/ /root/workspace /root/remapped.txt
     exit 1
 fi
 if [[ cat /root/out.txt !="11" ]]; then
     echo -e "Error: the parameter(s) was(ere) defined incorrectly"
-    rm -rf /root/ros_repo/ /root/workspace /root/expected_topics.txt /root/topics.txt
+    rm -rf /root/ros_repo/ /root/workspace /root/remapped.txt
     exit 1
 fi
