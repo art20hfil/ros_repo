@@ -15,6 +15,7 @@ if [[ "$(cat /root/forerrors.txt)" != "" ]]; then
         rm -rf /root/ros_repo/ /root/workspace /root/forerrors.txt
 	exit 1
 fi
+source /root/workspace/devel/setup.bash
 
 users_file=$(ls /home/box/*.launch)
 if [[ $users_file == "" ]]; then
