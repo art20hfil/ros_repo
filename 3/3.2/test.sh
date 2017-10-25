@@ -23,7 +23,13 @@ if [[ $users_file == "" ]]; then
     exit 1
 fi
 
-roslaunch $users_file max_size:=1 1>/dev/null 2>/dev/null &
+roslaunch $users_file max_size:=1 1>/dev/null 2>$is_launched &
+if [[ $is_launched != "" ]]; then
+    echo -e "Error: could not launch your file"
+    rm -rf /root/ros_repo/ /root/workspace
+    exit 1
+fi
+
 sleep 1
 rostopic list >> /root/topics.txt
 echo -e "/input_array\n/rosout\n/rosout_agg" >> /root/expected_topics.txt
