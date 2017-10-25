@@ -23,7 +23,7 @@ if [[ $users_file == "" ]]; then
     exit 1
 fi
 
-roslaunch $users_file max_size:=1 2>/root/forerrors.txt &
+roslaunch $users_file max_size:=1 >> /dev/null 2>/root/forerrors.txt &
 
 sleep 1
 if [[ "$(cat /root/forerrors.txt)" != "" ]]; then
