@@ -17,7 +17,7 @@ if [[ "$(cat /root/forerrors.txt)" != "" ]]; then
 fi
 source /root/workspace/devel/setup.bash
 
-users_file=$(ls /home/box/*.launch)
+users_file=$(ls /home/box/*.launch >> /dev/null)
 if [[ $users_file == "" ]]; then
     echo -e "Error: no launch file detected"
     rm -rf /root/ros_repo/ /root/workspace /root/forerrors.txt
