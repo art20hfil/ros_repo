@@ -26,7 +26,7 @@ fi
 
 roslaunch $users_file max_size:=1 >> /dev/null 2>/root/forerrors.txt
 forerrors=$(cat /root/forerrors.txt)
-forerrors=${forerrors%%[31m===*cleanly*======[0m}
+forerrors=${forerrors%%[31m===*======[0m}
 sleep 1
 if [[ $forerrors != "" ]]; then
     
