@@ -41,7 +41,7 @@ if [[ "$(cat /root/remapped.txt)" == "" ]]; then
     rm -rf /root/ros_repo/ /root/workspace /root/remapped.txt
     exit 1
 fi
-if [[ cat /root/out.txt !="11" ]]; then
+if [[ $(cat /root/out.txt) != "11" ]]; then
     echo -e "Error: the parameter(s) was(ere) defined incorrectly"
     rm -rf /root/ros_repo/ /root/workspace /root/remapped.txt
     exit 1
