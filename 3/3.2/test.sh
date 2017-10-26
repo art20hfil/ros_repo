@@ -20,7 +20,7 @@ source /root/workspace/devel/setup.bash
 users_file=$(ls /home/box/*.launch)
 if [[ $users_file == "" ]]; then
     echo -e "Error: no launch file detected"
-    rm -rf /root/ros_repo/ /root/workspace
+    rm -rf /root/ros_repo/ /root/workspace /root/forerrors.txt
     exit 1
 fi
 
@@ -36,7 +36,7 @@ fi
 
 cat $users_file | grep remap | grep input_array >> /root/remapped.txt
 
-if [[ "$(cat /root/remapped.txt)" != "" ]]; then
+if [[ "$(cat /root/remapped.txt)" == "" ]]; then
     echo -e "Error: node2 is reading from incorrect topic"
     rm -rf /root/ros_repo/ /root/workspace /root/remapped.txt
     exit 1
