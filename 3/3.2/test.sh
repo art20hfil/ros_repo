@@ -25,10 +25,8 @@ if [[ $users_file == "" ]]; then
 fi
 
 roslaunch $users_file max_size:=1 >> /dev/null 2>/root/forerrors.txt
-forerrors=$(cat /root/forerrors.txt)
-forerrors=${forerrors%%[31m===*}
-sleep 1
-if [[ $forerrors != "" ]]; then
+
+if [[ $(/root/ros_repo/3/3.2/consists_no_errors.py /root/forerrors.txt) != "" ]]; then
     
     echo -e "Error: could not launch your file"
     echo -e $forerrors
