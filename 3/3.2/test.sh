@@ -32,7 +32,7 @@ if [[ $forerrors != "" ]]; then
     
     echo -e "Error: could not launch your file"
     echo -e $forerrors
-    rm -rf /root/ros_repo/ /root/workspace /root/forerrors.txt
+    rm -rf /root/ros_repo/ /root/workspace
     exit 1
 fi
 
