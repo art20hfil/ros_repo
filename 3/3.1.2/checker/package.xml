@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package>
+  <name>checker</name>
+  <version>0.0.0</version>
+  <description>The checker package</description>
+  <maintainer email="artem@todo.todo">artem</maintainer>
+  <license>TODO</license>
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <run_depend>roscpp</run_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <build_depend>visualization_msgs</build_depend>
+  <run_depend>visualization_msgs</run_depend>
+  <export>
+  </export>
+</package>

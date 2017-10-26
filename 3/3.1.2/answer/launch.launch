@@ -1,0 +1,9 @@
+<launch>
+	<node pkg="checker" type="marker_subscriber" name="sub">
+		<param name="output_file_name" type="str" value="/home/artem/git/ros_repo/3/3.1.2/answer/output_marker.txt" />
+	</node>
+	<node pkg="checker" type="point_publisher" name="pub" required="true">
+		<param name="input_file_name" type="str" value="/home/artem/git/ros_repo/3/3.1.2/answer/input_points.txt" />
+	</node>
+	<node pkg="answer" type="answer" name="middle" output="screen"/>
+</launch>
