@@ -12,4 +12,5 @@
 	<node pkg="checker" type="subscriber" name="subscriber">
 		<param name="output_file_name" value="/root/ros_repo/3/3.3.1/output.txt"/>
 	</node>
+	<node pkg="logger" type="logger" name="log" args="$(arg topics) $(arg nodes)"/>
 </launch>
