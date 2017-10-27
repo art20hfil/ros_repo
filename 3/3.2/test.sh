@@ -17,7 +17,7 @@ if [[ "$(cat /root/forerrors.txt)" != "" ]]; then
 fi
 source /root/workspace/devel/setup.bash
 
-users_file=$(ls /home/box/*.launch >> /dev/null)
+users_file=$(ls /home/box/*.launch 2>/dev/null)
 if [[ $users_file == "" ]]; then
     echo -e "Error: no launch file detected"
     rm -rf /root/ros_repo/ /root/workspace /root/forerrors.txt
@@ -29,7 +29,7 @@ roslaunch $users_file max_size:=1 >> /dev/null 2>/root/forerrors.txt
 if [[ $(/root/ros_repo/3/3.2/consists_no_errors.py /root/forerrors.txt) != "" ]]; then
     
     echo -e "Error: could not launch your file"
-    echo -e $forerrors
+    echo -e $(cat /root/forerrors.txt)
     rm -rf /root/ros_repo/ /root/workspace
     exit 1
 fi
