@@ -1,0 +1,15 @@
+<launch>
+	<node pkg="checker" type="publisher" name="publisher" required="true">
+		<param name="input_file_name" value="/root/ros_repo/3/3.3.1/input.txt"/>
+	</node>
+	<node pkg="tf" type="static_transform_publisher" name="coretoa" args="1 1 1 0 0 2 core_frame a 100" />
+	<node pkg="tf" type="static_transform_publisher" name="coretob" args="2 5 -1 0 0 1 core_frame b 100" />
+	<node pkg="tf" type="static_transform_publisher" name="atoc" args="5 4 0 0 0 -1 a c 100" />
+	<node pkg="tf" type="static_transform_publisher" name="btod" args="-3 2 8 0 0 3 b d 100" />
+	<node pkg="tf" type="static_transform_publisher" name="ctoe" args="8 8 4 0 0 -2 c e 100" />
+	<node pkg="tf" type="static_transform_publisher" name="coretof" args="7 -4 5 0 0 1 core_frame f 100" />
+	<node pkg="tfconverter" type="tfconverter_node" name="converter"/>
+	<node pkg="checker" type="subscriber" name="subscriber">
+		<param name="output_file_name" value="/root/ros_repo/3/3.3.1/output.txt"/>
+	</node>
+</launch>
