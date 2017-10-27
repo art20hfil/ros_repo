@@ -29,7 +29,7 @@ roslaunch $users_file max_size:=1 >> /dev/null 2>/root/forerrors.txt
 if [[ $(/root/ros_repo/3/3.2/consists_no_errors.py /root/forerrors.txt) != "" ]]; then
     
     echo -e "Error: could not launch your file"
-    echo -e $forerrors
+    echo -e $(cat /root/forerrors.txt)
     rm -rf /root/ros_repo/ /root/workspace
     exit 1
 fi
