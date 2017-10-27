@@ -15,7 +15,7 @@ def test_answer(message):
     global set_type
     received_fout = open('/root/received_file.txt','a')
     
-    received_fout.write(str(message.pose.position.x) + str(message.pose.position.y) + str(message.pose.position.z) + '\n')
+    received_fout.write(str(message.points[-1].x) + str(message.points[-1].y) + str(message.points[-1].z) + '\n')
     if set_type != -1:
         if set_type != message.type:
             received_fout.write('error: unexpected type changing of several markers\n')
