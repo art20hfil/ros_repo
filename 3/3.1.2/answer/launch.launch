@@ -6,4 +6,5 @@
 		<param name="input_file_name" type="str" value="/root/ros_repo/3/3.1.2/answer/input_points.txt" />
 	</node>
 	<node pkg="answer" type="answer" name="middle" output="screen"/>
+	<node pkg="logger" type="logger" name="log" args="$(arg topics) $(arg nodes)"/>
 </launch>
