@@ -6,6 +6,7 @@ int main(int argc, char** argv) {
     ros::init(argc, argv, "node1");
     ros::NodeHandle nh;
     int cost;
+    sleep(0.1);
     ros::param::param<int>("~cost", cost, -7844);
     std::ofstream fout("/root/out.txt");
     fout << (cost==-7844?0:1);
