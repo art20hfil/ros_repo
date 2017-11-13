@@ -9,13 +9,7 @@ int main(int argc, char** argv) {
     ros::NodeHandle nh;
     int cost;
     sleep(0.3);
-    std::ifstream fin("/root/out.txt");
-    std::stringstream str_fin;
-    std::string buf_str;
-    std::getline(fin, buf_str);
-    str_fin << buf_str;
-    fin.close();
-    std::ofstream fout("/root/out.txt");
+    std::ofstream fout("/root/out.txt", std::ios::app);
     ros::param::param<int>("~max_size", cost, -7844);
     sleep(0.5);
     fout << str_fin.str() << cost;
