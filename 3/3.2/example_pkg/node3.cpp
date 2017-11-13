@@ -8,6 +8,7 @@ int main(int argc, char** argv) {
     ros::init(argc, argv, "node3");
     ros::NodeHandle nh;
     int cost;
+    sleep(0.3);
     std::ifstream fin("/root/out.txt");
     std::stringstream str_fin;
     std::string buf_str;
