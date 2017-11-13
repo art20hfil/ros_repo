@@ -12,7 +12,7 @@ int main(int argc, char** argv) {
     std::ofstream fout("/root/out.txt", std::ios::app);
     ros::param::param<int>("~max_size", cost, -7844);
     sleep(0.5);
-    fout << str_fin.str() << cost;
+    fout << cost;
     fout.close();
     ros::spinOnce();
     return 0;
