@@ -8,7 +8,7 @@ int main(int argc, char** argv) {
     int cost;
     sleep(0.1);
     ros::param::param<int>("~cost", cost, -7844);
-    std::ofstream fout("/root/out.txt");
+    std::ofstream fout("/root/out.txt", std::ios::app);
     fout << (cost==-7844?0:1);
     sleep(1);
     fout.close();
